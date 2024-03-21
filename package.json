@@ -3,8 +3,11 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
+		"dev": "npm run copy:sql:wasm && vite dev",
+		"build:web": "npm run copy:sql:wasm && vite build",
+		"build:native": "npm run remove:sql:wasm && vite build",
+		"copy:sql:wasm": "copyfiles -u 3 node_modules/sql.js/dist/sql-wasm.wasm static/assets",
+		"remove:sql:wasm": "rimraf static/assets/sql-wasm.wasm",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -29,5 +32,13 @@
 		"typescript": "^5.0.0",
 		"vite": "^5.0.3"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@capacitor-community/sqlite": "^5.6.3",
+		"@capacitor/cli": "^5.7.3",
+		"@capacitor/core": "^5.7.3",
+		"@capacitor/toast": "^5.0.7",
+		"@ionic/pwa-elements": "^3.2.2",
+		"rxjs": "^7.8.1"
+	}
 }
