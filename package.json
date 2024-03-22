@@ -1,6 +1,6 @@
 {
 	"name": "vite-sveltekit-capacitor-sqlite",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"private": true,
 	"scripts": {
 		"dev": "npm run copy:sql:wasm && vite dev",
@@ -8,6 +8,11 @@
 		"build:native": "npm run remove:sql:wasm && vite build",
 		"copy:sql:wasm": "copyfiles -u 3 node_modules/sql.js/dist/sql-wasm.wasm static/assets",
 		"remove:sql:wasm": "rimraf static/assets/sql-wasm.wasm",
+		"ios:start": "npm run remove:sql:wasm && npm run build:native && npx cap sync && npx cap copy && npx cap open ios",
+		"android:start": "npm run remove:sql:wasm && npm run build:native && npx cap sync && npx cap copy && npx cap open android",
+		"electron:install": "cd electron && npm install && cd ..",
+		"electron:prepare": "npm run remove:sql:wasm && npm run build && npx cap sync @capacitor-community/electron && npx cap copy @capacitor-community/electron",
+		"electron:start": "npm run electron:prepare && cd electron && npm run electron:start",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -21,11 +26,13 @@
 		"@types/eslint": "^8.56.0",
 		"@typescript-eslint/eslint-plugin": "^7.0.0",
 		"@typescript-eslint/parser": "^7.0.0",
+		"copyfiles": "^2.4.1",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
+		"rimraf": "^5.0.5",
 		"svelte": "^4.2.7",
 		"svelte-check": "^3.6.0",
 		"tslib": "^2.4.1",
@@ -35,10 +42,13 @@
 	"type": "module",
 	"dependencies": {
 		"@capacitor-community/sqlite": "^5.6.3",
+		"@capacitor/android": "^5.7.4",
 		"@capacitor/cli": "^5.7.3",
 		"@capacitor/core": "^5.7.3",
+		"@capacitor/ios": "^5.7.4",
 		"@capacitor/toast": "^5.0.7",
 		"@ionic/pwa-elements": "^3.2.2",
+		"@sveltejs/adapter-static": "^3.0.1",
 		"rxjs": "^7.8.1"
 	}
 }

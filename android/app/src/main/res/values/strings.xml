@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">vite-sveltekit-capacitor-sqlite</string>
+    <string name="title_activity_main">vite-sveltekit-capacitor-sqlite</string>
+    <string name="package_name">com.jeepq.sveltekit.sqlite</string>
+    <string name="custom_url_scheme">com.jeepq.sveltekit.sqlite</string>
+</resources>

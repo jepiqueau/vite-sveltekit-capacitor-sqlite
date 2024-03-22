@@ -51,7 +51,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px;
+      padding-top: 50px;
+      padding-left: 20px;
+      padding-right: 20px;
       background-color: #f0f0f0;
     }
     .back-button {
@@ -81,7 +83,7 @@
       background-position: left center;
       cursor: pointer;
     }
-  
+
     .title {
       margin: 0;
       font-size: 1.2rem;
